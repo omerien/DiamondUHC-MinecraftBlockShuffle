@@ -77,7 +77,7 @@ public class startBS implements CommandExecutor{
 								
 										
 										mat = mats[rand.nextInt(mats.length-1)];
-										while(!mat.isSolid() || mat.name().contains("SIGN") || mat.name().contains("SHULKER") ||mat.name().contains("INFESTED") || mat.name().contains("BANNER") || mat.name().contains("DOOR") || mat.name().contains("COMMAND") || mat.name().contains("DEAD") || mat.name().contains("DIAMOND_BLOCK") || mat.name().contains("EMERALD") || mat.name().contains("END") || mat.name().contains("PURPUR") || mat.name().contains("HEAD")) {
+										while(!mat.isSolid() || mat.name().contains("SIGN") || mat.name().contains("SHULKER") ||mat.name().contains("NETHERITE") ||mat.name().contains("ANCIENT") ||mat.name().contains("INFESTED") || mat.name().contains("BANNER") || mat.name().contains("DOOR") || mat.name().contains("COMMAND") || mat.name().contains("DEAD") || mat.name().contains("DIAMOND_BLOCK") || mat.name().contains("EMERALD") || mat.name().contains("END") || mat.name().contains("PURPUR") || mat.name().contains("HEAD")) {
 											mat = mats[rand.nextInt(mats.length-1)];
 										}
 										
