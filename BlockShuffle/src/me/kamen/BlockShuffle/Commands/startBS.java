@@ -54,7 +54,7 @@ public class startBS implements CommandExecutor{
 			sched.scheduleSyncRepeatingTask(plugin, new Runnable() {
 				
 				//int task1;
-				final int RoundTime = 300;
+				final int RoundTime = 480;
 				Material mat;
 				boolean end = false;
 				boolean isStarting = true;
