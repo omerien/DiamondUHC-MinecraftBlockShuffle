@@ -101,70 +101,24 @@ public class startBS implements CommandExecutor{
 					}
 					
 					if(isEnding) {
-						
-						if(cnt == 0) {
-							cnt = 10;
-							time = RoundTime;
-							isEnding = false;
-							if(numberofPlayersFoundBlocks == 1) {
-								
-								
-								for(Map.Entry<String, Material> entry : plugin.plmap.entrySet()) {
-									
-									if(entry.getValue() == null) {
-										
-										p.getServer().broadcastMessage(ChatColor.GREEN + "" + entry.getKey() + "" + ChatColor.GOLD + "" + ChatColor.BOLD + " WON!!!\n");
-										
-									}
-
-								}
-								end = true;
-								p.getServer().getScheduler().cancelTasks(plugin);
-								
-							}else if(numberofPlayersFoundBlocks == 0) {
-								
-								p.getServer().broadcastMessage(ChatColor.GOLD + "" + ChatColor.BOLD + "THE GAME ENDED!!!\n" + ChatColor.RED + "Noone could find their block!");
-								end = true;
-								p.getServer().getScheduler().cancelTasks(plugin);
-								
-							}else {
-								for(Map.Entry<String, Material> entry : plugin.plmap.entrySet()) {
-									
-									boolean hasABlock = false;
-									
-									if(entry.getValue() != null) {
-										
-										hasABlock = true;
-										plugin.plmap.remove(entry.getKey());
-										
-									}
-											
-											if(!hasABlock) {
-												mat = mats[rand.nextInt(mats.length-1)];
-												Location loc = p.getServer().getPlayer(entry.getKey()).getLocation();
-												loc.getWorld().spawnParticle(Particle.VILLAGER_HAPPY, loc.getX(), loc.getY(), loc.getZ(), 0, 0, 0, 0, found);
-												p.getServer().getPlayer(entry.getKey()).playSound(p.getServer().getPlayer(entry.getKey()).getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
-												while(!mat.isSolid() || mat.name().contains("SIGN") || mat.name().contains("SHULKER") ||mat.name().contains("INFESTED") || mat.name().contains("BANNER") || mat.name().contains("DOOR") || mat.name().contains("COMMAND") || mat.name().contains("DEAD") || mat.name().contains("DIAMOND_BLOCK") || mat.name().contains("EMERALD") || mat.name().contains("END") || mat.name().contains("PURPUR") || mat.name().contains("HEAD")) {
-													mat = mats[rand.nextInt(mats.length-1)];
-												}
-												
-												plugin.plmap.replace(entry.getKey(), mat);
-												p.getServer().getPlayer(entry.getKey()).sendMessage("You have 5 minutes to find: " + mat.name());
-											}
-											
-										
-									
-								}
+						for(Map.Entry<String, Material> entry : plugin.plmap.entrySet()) {
+							mat = mats[rand.nextInt(mats.length-1)];
+							Location loc = p.getServer().getPlayer(entry.getKey()).getLocation();
+							loc.getWorld().spawnParticle(Particle.VILLAGER_HAPPY, loc.getX(), loc.getY(), loc.getZ(), 0, 0, 0, 0, found);
+							p.getServer().getPlayer(entry.getKey()).playSound(p.getServer().getPlayer(entry.getKey()).getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+							while(!mat.isSolid() || mat.name().contains("SIGN") || mat.name().contains("SHULKER") ||mat.name().contains("INFESTED") || mat.name().contains("BANNER") || mat.name().contains("DOOR") || mat.name().contains("COMMAND") || mat.name().contains("DEAD") || mat.name().contains("DIAMOND_BLOCK") || mat.name().contains("EMERALD") || mat.name().contains("END") || mat.name().contains("PURPUR") || mat.name().contains("HEAD")) {
+								mat = mats[rand.nextInt(mats.length-1)];
 							}
-							
-						}else {
-							
-							p.getServer().broadcastMessage(ChatColor.RED + "" + ChatColor.BOLD + "" + Integer.toString(cnt--) + " seconds remaining!");
-							
-						}
 						
+							plugin.plmap.replace(entry.getKey(), mat);
+							p.getServer().getPlayer(entry.getKey()).sendMessage("You have 5 minutes to find: " + mat.name());
+						}				
 					}
-					
+					else {
+							
+						p.getServer().broadcastMessage(ChatColor.RED + "" + ChatColor.BOLD + "" + Integer.toString(cnt--) + " seconds remaining!");
+							
+					}
 					if(!end && !isEnding && !isStarting) {
 						
 						if(time % 60 == 0) {
@@ -187,31 +141,29 @@ public class startBS implements CommandExecutor{
 								
 							}
 							
-							if(numberofPlayersFoundBlocks >= plugin.plmap.entrySet().size()) {
+							for(Map.Entry<String, Material> entry : plugin.plmap.entrySet()) {
 								
-								for(Map.Entry<String, Material> entry : plugin.plmap.entrySet()) {
-									
-									
-									mat = mats[rand.nextInt(mats.length-1)];
+								
+								mat = mats[rand.nextInt(mats.length-1)];
 
-									Location loc = p.getServer().getPlayer(entry.getKey()).getLocation();
-									loc.getWorld().spawnParticle(Particle.VILLAGER_HAPPY, loc.getX(), loc.getY(), loc.getZ(), 0, 0, 0, 0, found);
-									p.getServer().getPlayer(entry.getKey()).playSound(p.getServer().getPlayer(entry.getKey()).getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
-									while(!mat.isSolid() || mat.name().contains("SIGN") || mat.name().contains("SHULKER") ||mat.name().contains("INFESTED") || mat.name().contains("BANNER") || mat.name().contains("DOOR") || mat.name().contains("COMMAND") || mat.name().contains("DEAD") || mat.name().contains("DIAMOND_BLOCK") || mat.name().contains("EMERALD") || mat.name().contains("END") || mat.name().contains("PURPUR") || mat.name().contains("HEAD")) {
-										mat = mats[rand.nextInt(mats.length-1)];
-									}
+								Location loc = p.getServer().getPlayer(entry.getKey()).getLocation();
+								loc.getWorld().spawnParticle(Particle.VILLAGER_HAPPY, loc.getX(), loc.getY(), loc.getZ(), 0, 0, 0, 0, found);
+								p.getServer().getPlayer(entry.getKey()).playSound(p.getServer().getPlayer(entry.getKey()).getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+								while(!mat.isSolid() || mat.name().contains("SIGN") || mat.name().contains("SHULKER") ||mat.name().contains("INFESTED") || mat.name().contains("BANNER") || mat.name().contains("DOOR") || mat.name().contains("COMMAND") || mat.name().contains("DEAD") || mat.name().contains("DIAMOND_BLOCK") || mat.name().contains("EMERALD") || mat.name().contains("END") || mat.name().contains("PURPUR") || mat.name().contains("HEAD")) {
+									mat = mats[rand.nextInt(mats.length-1)];
+								}
 									
 									plugin.plmap.replace(entry.getKey(), mat);
 									p.getServer().getPlayer(entry.getKey()).sendMessage("You have 5 minutes to find: " + mat.name());
-								}
-								
-								
-								isEnding = false;
-								isStarting = false;
-								time = RoundTime;
-								cnt = 10;
-								
 							}
+								
+								
+							isEnding = false;
+							isStarting = false;
+							time = RoundTime;
+							cnt = 10;
+								
+							
 							numberofPlayersFoundBlocks = 0;
 							
 						}
